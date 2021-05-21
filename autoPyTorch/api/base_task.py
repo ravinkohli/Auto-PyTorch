@@ -1245,7 +1245,7 @@ class BaseTask:
     def get_incumbent_results(
         self,
         include_traditional: bool = False
-    ) -> Tuple[Configuration, Dict[str, Union[int, str, float]]]:
+    ) -> Tuple[int, Configuration, Dict[str, Union[int, str, float]]]:
         """
         Get Incumbent config and the corresponding results
         Args:
@@ -1270,7 +1270,7 @@ class BaseTask:
         incumbent_run_key, incumbent_run_value = sorted_runvalue_by_cost[0]
         incumbent_config = self.run_history.ids_config[incumbent_run_key.config_id]
         incumbent_results = incumbent_run_value.additional_info
-        return incumbent_config, incumbent_results
+        return incumbent_run_key, incumbent_config, incumbent_results
 
     def get_models_with_weights(self) -> List:
         if self.models_ is None or len(self.models_) == 0 or \

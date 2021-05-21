@@ -193,7 +193,7 @@ def test_tabular_classification(openml_id, resampling_strategy, backend, resampl
     assert 'accuracy' in score
 
     # check incumbent config and results
-    incumbent_config, incumbent_results = estimator.get_incumbent_results()
+    incumbent_run_key, incumbent_config, incumbent_results = estimator.get_incumbent_results()
     assert isinstance(incumbent_config, Configuration)
     assert isinstance(incumbent_results, dict)
     assert 'opt_loss' in incumbent_results, "run history: {}, successful_num_run: {}".format(estimator.run_history.data,
