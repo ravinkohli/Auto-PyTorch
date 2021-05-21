@@ -376,11 +376,13 @@ def test_tabular_regression(openml_name, resampling_strategy, backend, resamplin
     assert 'r2' in score
 
     # check incumbent config and results
-    incumbent_config, incumbent_results = estimator.get_incumbent_results()
+    incumbent_run_key, incumbent_config, incumbent_results = estimator.get_incumbent_results()
     assert isinstance(incumbent_config, Configuration)
     assert isinstance(incumbent_results, dict)
-    assert 'opt_loss' in incumbent_results, "run history: {}, successful_num_run: {}".format(estimator.run_history.data,
-                                                                                             successful_num_run)
+    assert 'opt_loss' in incumbent_results, "run key: {}, run history: {}, successful_num_run: {}".format(
+        incumbent_run_key,
+        estimator.run_history.data,
+        successful_num_run)
     assert 'train_loss' in incumbent_results, estimator.run_history.data
 
     # Check that we can pickle
